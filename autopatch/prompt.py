@@ -10,9 +10,10 @@ def generate_fix(traceback_text:str,src_code:str)->str:
     SOURCE CODE:
     {src_code}
 
-    Return ONLY a unified diff that fixes the bug. No explanation just the raw diff."""
+    Return ONLY the complete corrected version of this file's code, exactly ONCE. do not repeat the code. Do not include explanations, markdown code fences, or diff formatting.
+    Output the corrected Python code a single time, with nothing before or after it."""
     response = client.models.generate_content(
         model=ModelName,
         contents=prompt
     )
-    return response.text
+    return response.text.strip()
